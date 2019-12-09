@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/forms.css">
+</head>
+<body>
+    <div class="row header">
+        <h2 class="logo">bonn <span>International</span></h2>
+        <ul>
+            <li>
+                <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+    <br><br><br>
+    <div class="row admin-menu">
+            <div class="col-lg-11 user-menu">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#home"><i class="fa fa-user-plus" aria-hidden="true"></i> Add member</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#menu1"><i class="fa fa-trash" aria-hidden="true"></i> Remove member</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#menu2"><i class="fa fa-pencil" aria-hidden="true"></i> Update member</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu3"><i class="fa fa-eye" aria-hidden="true"></i> All Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu4"><i class="fa fa-eye" aria-hidden="true"></i> All Teachers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu5"><i class="fa fa-plus" aria-hidden="true"></i> New Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu6"><i class="fa fa-eye" aria-hidden="true"></i> All Admins</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#menu7"><i class="fa fa-cogs" aria-hidden="true"></i> Setting</a>
+                    </li>
+                  </ul>
+                
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div id="home" class="container tab-pane active">
+                            <div class="form-box2">
+                                    <h2>Add <span>Member</span> </h2>
+                                    <br>
+                                    <div class="{{type}}">
+                                        <h3>{{msg}}</h3>
+                                    </div>
+                                    <br><br>
+                                    <form action="/add-member" method="POST">
+                                        <input type="email" placeholder="Email" name="email" required>
+                                        <br><br>
+                                        <input type="text" name="name" placeholder="Name" required>
+                                        <br><br>
+                                        <input type="text" name="programm" placeholder="Programm/Subject" required>
+                                        <br><br>
+                                        <input type="radio" name="type" value="teacher" checked id="radio"> Teacher
+                                        <input type="radio" name="type" value="student" id="radio"> Student<br>
+                                        <br><br>
+                                        <button type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i> Add</button>
+                                        <br><br><hr>
+                                    </form>
+                    </div>
+                    </div>
+                    <div id="menu1" class="container tab-pane fade">
+                            <div class="form-box2">
+                                    <h2>Remove <span>Member</span> </h2>
+                                    <br>
+                                    <div class="{{type}}">
+                                        <h3>{{msg}}</h3>
+                                    </div>
+                                    <br><br>
+                                <form action="/remove-member" method="POST">
+                                        <input type="email" placeholder="Email" name="email" required>
+                                        <br><br>
+                                        <input type="text" placeholder="Name" name="name" required>
+                                        <br><br>
+                                        <input type="radio" name="type" value="teacher" checked id="radio"> Teacher
+                                        <input type="radio" name="type" value="student" id="radio"> Student<br>
+                                        <br><br>
+                                        <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Remove</button>
+                                        <br><br><hr>
+                                </form>
+                    </div>
+                    </div>
+                    <div id="menu2" class="container tab-pane fade">
+                            <div class="form-box2">
+                                    <h2>Update <span>Member</span> </h2>
+                                    <br>
+                                    <div class="{{type}}">
+                                        <h3>{{msg}}</h3>
+                                    </div>
+                                    <br><br>
+                                <form action="/update-member" method="POST">
+                                        <input type="email" placeholder="Email" name="email">
+                                        <br><br>
+                                        <input type="radio" name="type" value="teacher" checked id="radio"> Teacher
+                                        <input type="radio" name="type" value="student" id="radio"> Student<br><br>
+                                        <input type="email" placeholder="New Email" name="new-email" required>
+                                        <br><br>
+                                        <input type="text" placeholder="New Name" name="new-name" required>
+                                        <br><br>
+                                        <input type="password" placeholder="New Password" name="new-password" required>
+                                        <br><br>
+                                        <button type="submit"><i class="fa fa-pencil" aria-hidden="true"></i> Upadte</button>
+                                        <br><br><hr>
+                                </form>
+                                <br>
+                    </div>
+                    </div>
+                    <div id="menu3" class="container tab-pane fade">
+                        <br><br>
+                            <table class="table table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th>Email</th>
+                                        <th>Name</th>
+                                        <th>Programmm</th>
+                                        <th>Password</th>
+                                        <th>Join Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for i in students %}
+                                        <tr>
+                                            <td>{{i['email']}}</td>
+                                            <td>{{i['name']}}</td>
+                                            <td>{{i['program']}}</td>
+                                            <td>{{i['password']}}</td>
+                                            <td>{{i['date']}}</td>
+                                        </tr>
+                                       {% endfor %}
+                                    </tbody>
+                                  </table>
+                    </div>
+                    <div id="menu4" class="container tab-pane fade">
+                            <br><br>
+                            <table class="table table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th>Email</th>
+                                        <th>Name</th>
+                                        <th>Password</th>
+                                        <th>Subject</th>
+                                        <th>Join Date</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in teachers %}
+                                        <tr>
+                                            <td>{{i['email']}}</td>
+                                            <td>{{i['name']}}</td>
+                                            <td>{{i['program']}}</td>
+                                            <td>{{i['password']}}</td>
+                                            <td>{{i['date']}}</td>
+                                        </tr>
+                                       {% endfor %}
+                                    </tbody>
+                            </table>
+                    </div>
+                    <div id="menu5" class="container tab-pane fade">
+                        <div class="form-box2">
+                            <h2>Add <span>Admin</span> </h2>
+                            <br>
+                            <div class="{{type}}">
+                                <h3>{{msg}}</h3>
+                            </div>
+                            <br><br>
+                        <form action="/add-admin" method="POST">
+                                <input type="email" placeholder="Email" name="email" required>
+                                <br><br>
+                                <input type="text" placeholder="Name" name="name" required>
+                                <br><br>
+                                <input type="password" placeholder="Password" name="password" required>
+                                <br><br>
+                                <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+                                <br><br><hr>
+                        </form>
+                        <br>
+            </div>
+                    </div>
+                    <div id="menu6" class="container tab-pane fade">
+                        <br><br>
+                            <table class="table table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th>Email</th>
+                                        <th>Name</th>
+                                        <th>Password</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in admins %}
+                                        <tr>
+                                            <td>{{i['email']}}</td>
+                                            <td>{{i['name']}}</td>
+                                            <td>{{i['password']}}</td>
+                                        </tr>
+                                       {% endfor %}
+                                    </tbody>
+                            </table>
+                    </div>
+                    <div id="menu7" class="container tab-pane fade">
+                            <div class="form-box2">
+                                    <h2>Update <span>Admin</span> </h2>
+                                    <br>
+                                    <div class="{{type}}">
+                                        <h3>{{msg}}</h3>
+                                    </div>
+                                    <br><br>
+                                <form action="/update-admin" method="POST" class="update">
+                                    <input type="email" placeholder="Enter Email" name="email" required>
+                                    <br><br>
+                                    <input type="email" placeholder="New Email" name="new-email" required>
+                                    <br><br>
+                                    <input type="text" placeholder="New Name" name="new-name" required>
+                                    <br><br>
+                                    <input type="password" placeholder="New Password" name="new-password" required>
+                                    <br><br>
+                                    <br>
+                                    <button type="submit"><i class="fa fa-pencil" aria-hidden="true"></i> Upadte</button>
+                                </form><br><br>
+                    </div>
+                    </div>
+                </div>
+          </div>
+</body>
+</html>

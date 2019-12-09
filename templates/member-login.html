@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/forms.css">
+</head>
+<body>
+    <div class="row header">
+        <h2 class="logo">bonn <span>International</span></h2>
+        <ul>
+            <li>
+                <a href="/" class="active">Home</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+            <li>
+                <a href="/login">Login</a>
+            </li>
+            <li>
+                <a href="/admin">Admin</a>
+            </li>
+        </ul>
+    </div>
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="form-box">
+                <br><br>
+                <h2>Member <span>Login</span> here</h2>
+                <br><br>
+                <div class="{{type}}">
+                    <h3>{{msg}}</h3>
+                </div>
+                <br><br>
+                <form action="/member-login" method="POST">
+                    <input type="email" placeholder="Email" name="email">
+                    <br><br>
+                    <input type="password" name="password" placeholder="Password">
+                    <br><br>
+                    <input type="radio" name="type" value="teacher" checked id="radio"> Teacher
+                    <input type="radio" name="type" value="student" id="radio"> Student<br>
+                    <br><br>
+                    <button type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+                    <br><br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</body>
+</html>
