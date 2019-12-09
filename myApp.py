@@ -344,9 +344,10 @@ def member_login():
                 password = valid.password
                 join_date = valid.date
                 program = valid.program
+                email = valid.email
                 date = datetime.datetime.now()
                 return render_template('member-info.html', name=name, password=password, join_date=join_date,
-                                       program=program, date=date)
+                                       program=program, date=date, email=email, member=member)
             if not valid:
                 msg_type = "alert alert-danger"
                 msg = "Member not exited"
@@ -358,14 +359,70 @@ def member_login():
                 password = valid.password
                 join_date = valid.date
                 program = valid.program
+                email = valid.email
                 date = datetime.datetime.now()
                 return render_template('member-info.html',email=email, name=name, password=password, join_date=join_date,
-                                       program=program, date=date)
+                                       program=program, date=date, member=member)
             if not valid:
                 msg_type = "alert alert-danger"
                 msg = "Member not exited"
                 return render_template('member-login.html', type=msg_type, msg=msg)
     return render_template('member-login.html')
+
+
+@app.route('/change-member-email', methods=['POST', 'GET'])
+def update_email():
+    if request.method == 'POST':
+        email = request.form['email']
+        member = request.form['type']
+        new_email = request.form['new-email']
+        if member == "teacher":
+            valid = Teacher.query.filter_by(email=email).first()
+            if valid:
+                valid.email = new_email
+                db.session.add(valid)
+                db.session.commit()
+                msg_type = "alert alert-success"
+                msg = "Email successfully changed"
+                return render_template('member-login.html', type=msg_type, msg=msg)
+        if member == "student":
+            valid = Student.query.filter_by(email=email).first()
+            if valid:
+                valid.email = new_email
+                db.session.add(valid)
+                db.session.commit()
+                msg_type = "alert alert-success"
+                msg = "Email successfully changed"
+                return render_template('member-login.html', type=msg_type, msg=msg)
+    return render_template('member-info.html')
+
+
+@app.route('/change-member-password', methods=['POST', 'GET'])
+def update_password():
+    if request.method == 'POST':
+        email = request.form['email']
+        member = request.form['type']
+        password = request.form['password']
+        new_password = request.form['new-password']
+        if member == "teacher":
+            valid = Teacher.query.filter_by(email=email, password=password).first()
+            if valid:
+                valid.password = new_password
+                db.session.add(valid)
+                db.session.commit()
+                msg_type = "alert alert-success"
+                msg = "Password successfully changed"
+                return render_template('member-login.html', type=msg_type, msg=msg)
+        if member == "student":
+            valid = Student.query.filter_by(email=email, password=password).first()
+            if valid:
+                valid.password = new_password
+                db.session.add(valid)
+                db.session.commit()
+                msg_type = "alert alert-success"
+                msg = "Password successfully changed"
+                return render_template('member-login.html', type=msg_type, msg=msg)
+    return render_template('member-info.html')
 
 
 if __name__ == '__main__':

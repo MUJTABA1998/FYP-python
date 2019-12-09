@@ -18,7 +18,6 @@
     <div class="row header">
         <h2 class="logo">bonn <span>International</span></h2>
         <ul>
-            
             <li>
                 <a href="/logout-member"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
             </li>
@@ -27,9 +26,7 @@
     <br><br><br>
     <center>
         <h2>Welcome {{name}}</h2>
-        <br><br>
-        <h5>{{date}}</h5>
-        <br><br>
+        <br>
         <div class="jumbotron">
             <h3>{{name}} Your Info</h3>
             <h5>Email : {{email}}</h5>
@@ -37,6 +34,59 @@
             <h5>Programm : {{program}}</h5>
             <h5>Join Date : {{join_date}}</h5>
         </div>
+        <br><br>
+        <ul class="nav nav-tabs" style="width: 80%;margin-left: 10%;">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#menu1"><i class="fa fa-pencil" aria-hidden="true"></i> Change Email</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu2"><i class="fa fa-pencil" aria-hidden="true"></i> Change Password</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="menu1" class="container tab-pane active">
+                <div class="form-box2">
+                    <h2>Update <span>Email</span> </h2>
+                    <br>
+                    <div class="{{type}}">
+                        <h3>{{msg}}</h3>
+                    </div>
+                    <br><br>
+                    <form action="/change-member-email" method="POST">
+                        <input type="hidden" value={{member}} name="type">
+                        <input type="email" value={{email}} name="email">
+                        <br><br>
+                        <input type="email" placeholder="New Email" name="new-email">
+                        <br>
+                        <br><br>
+                        <button type="submit"><i class="fa fa-pencil" aria-hidden="true"></i> Change</button>
+                        <br><br><hr>
+                    </form>
+            </div>
+            </div>
+            <div id="menu2" class="container tab-pane fade">
+                <div class="form-box2">
+                    <h2>Update <span>Password</span> </h2>
+                    <br>
+                    <div class="{{type}}">
+                        <h3>{{msg}}</h3>
+                    </div>
+                    <br><br>
+                    <form action="/change-member-password" method="POST">
+                        <input type="hidden" name="email" id="" value={{email}}>
+                        <input type="hidden" value={{member}} name="type">
+                        <input type="password" placeholder="Enter current password"  name="password">
+                        <br><br>
+                        <input type="password" placeholder="New Password" name="new-password">
+                        <br>
+                        <br><br>
+                        <button type="submit"><i class="fa fa-pencil" aria-hidden="true"></i> Change</button>
+                        <br><br><hr>
+                    </form>
+            </div>
+            </div>
+        </div>
+            
     </center>
 </body>
 </html>

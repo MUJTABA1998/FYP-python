@@ -41,6 +41,10 @@ body{
 	padding: 5px 10px;
 	letter-spacing: 2px;
 }
+.header .dropdown .dropdown-item .dropdown-menu a{
+    color: gray;
+    font-size: 14px;
+}
 .header ul li a:hover
 {
 	background: #000;
@@ -108,6 +112,9 @@ body{
     text-align: center;
     justify-content: center;
     border-radius: 2px;
+}
+.form-box #alert{
+    height: 50px;
 }
 .form-box2 input{
    width: 60%;
